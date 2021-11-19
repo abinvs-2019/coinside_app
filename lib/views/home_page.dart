@@ -57,20 +57,26 @@ class _HomeScreenState extends State<HomeScreen> {
 
   AppBar CostomAppBar() {
     return AppBar(
-      title: const Text(
-        "Micheal",
-        style: TextStyle(color: Colors.black),
-      ),
-      leading: CircleAvatar(
-        maxRadius: 5,
-        backgroundColor: Colors.redAccent[100],
+      title: Row(
+        children: [
+          CircleAvatar(
+            backgroundColor: Colors.pink[100],
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          const Text(
+            "Micheal",
+            style: TextStyle(color: Colors.black),
+          ),
+        ],
       ),
       automaticallyImplyLeading: false,
       backgroundColor: Colors.white,
       actions: [
         const Icon(
           Icons.settings_outlined,
-          color: Colors.grey,
+          color: Colors.black,
         ),
       ],
     );
@@ -96,32 +102,37 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Column(
         children: <Widget>[
           const Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 23),
             child: Text(
               "Dashboard",
               style: TextStyle(
-                fontSize: 40,
-                fontWeight: FontWeight.bold,
+                fontSize: 43,
+                fontWeight: FontWeight.w900,
               ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
             child: SizedBox(
-              height: 200.0,
+              width: 250,
+              height: 250.0,
               child: Stack(
                 children: <Widget>[
                   Center(
-                    child: Container(
-                      width: 200,
-                      height: 200,
-                      child: CircularProgressIndicator(
-                        strokeWidth: 15,
-                        backgroundColor: Colors.orange,
-                        value: double.parse(state
-                                .data[0].chartData!.classTime!.total
-                                .toString()) /
-                            100,
+                    child: Transform.rotate(
+                      angle: 90.5,
+                      child: Container(
+                        width: 250,
+                        height: 250,
+                        child: CircularProgressIndicator(
+                          color: Colors.blue[700],
+                          strokeWidth: 16,
+                          backgroundColor: Colors.orange,
+                          value: double.parse(state
+                                  .data[0].chartData!.classTime!.total
+                                  .toString()) /
+                              100,
+                        ),
                       ),
                     ),
                   ),
@@ -132,11 +143,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         const Text(
                           "Total",
                           style: TextStyle(
-                              fontSize: 30, fontWeight: FontWeight.bold),
+                              fontSize: 36, fontWeight: FontWeight.w800),
                         ),
                         Text(
-                          "${(double.parse(state.data[0].chartData!.totalTime!.total.toString()) / 60).toString().replaceAll(".", "h")}m",
-                          style: TextStyle(fontSize: 30),
+                          "${(double.parse(state.data[0].chartData!.totalTime!.total.toString()) / 60).toString().replaceAll(".", "h ")}m",
+                          style: TextStyle(
+                              fontSize: 50, fontWeight: FontWeight.w400),
                         ),
                       ],
                     ),
@@ -146,7 +158,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
+            padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 50),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -155,11 +167,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     text2: state.data[0].chartData!.classTime!.total.toString(),
                     color: Colors.blue),
                 timeClassWidget(
-                    text1: "Study Time",
+                    text1: "Study",
                     text2: state.data[0].chartData!.studyTime!.total.toString(),
                     color: Colors.orange),
                 timeClassWidget(
-                    text1: "Free Time",
+                    text1: "Free-Time",
                     text2: state.data[0].chartData!.freeTime!.total.toString(),
                     color: Colors.green)
               ],
@@ -167,14 +179,14 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           const Divider(),
           const Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
             child: Text(
               "Free-Time Usage",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 35),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 50),
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
             child: Column(
               children: [
                 Row(
@@ -185,12 +197,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         const Text(
                           "Used",
                           style: TextStyle(
-                              fontSize: 23, fontWeight: FontWeight.bold),
+                              fontSize: 25, fontWeight: FontWeight.bold),
                         ),
                         Text(
                           "${state.data[0].chartData!.freeTime!.total.toString()}m",
                           style: const TextStyle(
-                              fontSize: 28,
+                              fontSize: 37,
                               fontWeight: FontWeight.bold,
                               color: Colors.green),
                         ),
@@ -201,22 +213,22 @@ class _HomeScreenState extends State<HomeScreen> {
                         const Text(
                           "Max ",
                           style: TextStyle(
-                              fontSize: 23, fontWeight: FontWeight.bold),
+                              fontSize: 25, fontWeight: FontWeight.bold),
                         ),
                         Text(
-                          "${(double.parse(state.data[0].freeTimeMaxUsage.toString()) / 100).toString().replaceAll(".", "h")}h"
+                          "${(double.parse(state.data[0].freeTimeMaxUsage.toString()) / 100).toString().replaceAll(".", "h ")}m"
                               .toString(),
                           style: const TextStyle(
-                              fontSize: 28,
+                              fontSize: 35,
                               fontWeight: FontWeight.bold,
-                              color: Colors.green),
+                              color: Colors.black),
                         ),
                       ],
                     ),
                   ],
                 ),
                 Container(
-                    margin: EdgeInsets.symmetric(vertical: 20),
+                    margin: EdgeInsets.symmetric(vertical: 17),
                     width: double.infinity,
                     child: ClipRRect(
                       borderRadius: BorderRadius.all(Radius.circular(15)),
@@ -226,7 +238,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 .data[0].chartData!.freeTime!.total
                                 .toString()) /
                             100,
-                        backgroundColor: Colors.grey,
+                        backgroundColor: Colors.blue[100],
                         color: Colors.green,
                       ),
                     )),
@@ -234,103 +246,146 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 5),
             child: Container(
-              height: 40,
+              height: 55,
               width: double.infinity,
               decoration: BoxDecoration(
                 border: Border.all(
+                  width: 2.5,
                   color: Colors.blue,
                 ),
-                borderRadius: BorderRadius.circular(10.0),
+                borderRadius: BorderRadius.circular(5.0),
               ),
               child: const Center(
                 child: Text(
                   "Extend Free-Time",
-                  style: TextStyle(color: Colors.blue),
+                  style: TextStyle(
+                      color: Colors.blue,
+                      fontSize: 25,
+                      fontWeight: FontWeight.w600),
                 ),
               ),
             ),
           ),
           const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+            padding: EdgeInsets.symmetric(horizontal: 50, vertical: 25),
             child: Center(
-                child: Text("Change Time Restrictions",
-                    style: TextStyle(color: Colors.blue))),
+              child: Text(
+                "Change Time Restrictions",
+                style: TextStyle(
+                  color: Colors.blue,
+                  fontSize: 23,
+                ),
+              ),
+            ),
           ),
           const Divider(),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
             child: Center(
               child: Text(
-                "By Device",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                "By Devices",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 28,
+                ),
               ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                const Icon(
-                  Icons.phone_android,
-                  size: 100,
-                  color: Colors.grey,
+                Container(
+                  child: Container(
+                    height: 100,
+                    width: 150,
+                    child: Image(
+                      fit: BoxFit.contain,
+                      image: AssetImage("assets/images/mobile_img.png"),
+                    ),
+                  ),
                 ),
                 Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Text(
-                      'Adis Phone',
+                      "Adi's Phone",
                       style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 27, fontWeight: FontWeight.bold),
                     ),
                     Text(
-                        "${state.data[0].deviceUsage!.totalTime!.mobile.toString()}m",
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold, color: Colors.blue))
+                      "${state.data[0].deviceUsage!.totalTime!.mobile.toString()}m",
+                      style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blue),
+                    )
                   ],
                 ),
               ],
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                const Icon(
-                  Icons.laptop_chromebook,
-                  size: 100,
-                  color: Colors.grey,
+                Container(
+                  height: 100,
+                  width: 150,
+                  child: Image(
+                    fit: BoxFit.contain,
+                    image: AssetImage("assets/images/laptop_img.png"),
+                  ),
                 ),
                 Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Text(
-                      'Adis Laptop',
+                      "Adi's Laptop",
                       style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 27, fontWeight: FontWeight.bold),
                     ),
                     Text(
-                        "${state.data[0].deviceUsage!.totalTime!.laptop.toString()}m",
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold, color: Colors.blue))
+                      "${(double.parse(state.data[0].deviceUsage!.totalTime!.laptop.toString()) / 60).toString().replaceAll(".", "h ")}m",
+                      style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blue),
+                    )
                   ],
                 ),
               ],
             ),
           ),
-          TextButton(onPressed: () {}, child: Text("See all Device"))
+          TextButton(
+              onPressed: () {},
+              child: Text(
+                "See all Device",
+                style: TextStyle(fontSize: 20),
+              ))
         ],
       ),
     );
   }
 
   Column timeClassWidget({String? text1, text2, Color? color}) {
+    if (double.parse(text2) > 60) {
+      {
+        text2 = (double.parse(text2.toString()) / 60)
+            .toString()
+            .substring(0, 3)
+            .replaceAll(".", "h ");
+      }
+    }
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
+      mainAxisAlignment: MainAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
           child: Row(
@@ -344,12 +399,22 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               Text(
                 text1!,
-                style: TextStyle(fontSize: 20),
+                style: TextStyle(fontSize: 23),
               ),
             ],
           ),
         ),
-        Text(text2!),
+        Row(
+          children: [
+            Text(
+              "${text2}m",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 23,
+              ),
+            ),
+          ],
+        ),
       ],
     );
   }
